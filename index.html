@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bird Hunting</title>
+    <script src="./script/game.js" defer></script>
+    <script src="./script/index.js" defer></script>
+    <link rel="stylesheet" href="./style/index.css" />
+  </head>
+  <body>
+    <div class="mainmenu" id="mainmenu">
+      <div id="audio">
+        <img src="./assets/images/audio.svg" />
+        <input
+          type="range"
+          min="1"
+          max="100"
+          value="50"
+          class="slider"
+          id="myAudio"
+        />
+      </div>
+      <ul>
+        <li><button id="startGame">Start Game</button></li>
+        <li><button id="instructions">Instructions</button></li>
+        <li><button id="credits">Credits</button></li>
+      </ul>
+    </div>
+
+    <div class="instruction" id="instructionDiv">
+      <p>
+        Shoot the bird with the mouse. Click anywhere inside the div to exit the
+        instructions.
+      </p>
+    </div>
+
+    <div class="game-over-menu" id="gameOverMenu">
+      <h1>Your score:</h1>
+      <h1 id="score">400</h1>
+      <div>
+        <button id="playAgain">Play Again</button>
+        <button id="backToMenu">Back to menu</button>
+      </div>
+    </div>
+
+    <canvas
+      id="myGame"
+      height="500"
+      width="600"
+      style="border: 1px solid black"
+    ></canvas>
+  </body>
+</html>
