@@ -51,7 +51,7 @@ function gameStart() {
   movementSpeed = 2;
   addBirdSpeed = 4000;
   birdArr = [];
-  createBird();
+  Bird.createBird(maxBirdSpawn);
   draw();
   clearInterval(addBirdInterval);
   addBirdInterval = setInterval(addBird, addBirdSpeed);

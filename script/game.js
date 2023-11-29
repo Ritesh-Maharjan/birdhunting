@@ -2,18 +2,18 @@ const myGame = document.getElementById("myGame");
 const ctx = myGame.getContext("2d");
 
 let birdArr = [];
-let shotX = 0;
-let shotY = 0;
+let shotX = null;
+let shotY = null;
 let score = 0;
 let lives = 3;
 let movementSpeed;
 let addBirdSpeed;
 const maxBirdSpawn = 3;
 let volume = 0.25;
-let spriteArr = [];
+const spriteArr = [];
 
 for (let i = 1; i < 5; i++) {
-  let img = new Image();
+  const img = new Image();
   img.src = `../assets/sprite/bird-${i}.png`;
   spriteArr.push(img);
 }
@@ -57,11 +57,11 @@ class Bird {
   changeY(val) {
     this.moveY = val;
   }
-}
 
-function createBird() {
-  for (let i = 0; i < maxBirdSpawn; i++) {
-    birdArr[i] = new Bird();
+  static createBird(spawnAmt) {
+    for (let i = 0; i < spawnAmt; i++) {
+      birdArr[i] = new Bird();
+    }
   }
 }
 
@@ -114,15 +114,16 @@ function checkbirdDeath() {
 
 function checkbirdSurvive() {
   for (let i = 0; i < birdArr.length; i++) {
-    if (birdArr[i].positionY + birdArr[i].moveY < 0 - birdArr[i].height) {
+    const { positionY, moveY, height } = birdArr[i];
+    if (positionY + moveY < 0 - height) {
       lives--;
       birdArr.splice(i, 1);
-      let audio = new Audio("./assets/sounds/break.mp3");
+      const audio = new Audio("./assets/sounds/break.mp3");
       audio.volume = volume;
       audio.play();
     }
     if (lives === 0) {
-      let audio = new Audio("./assets/sounds/gameover.mp3");
+      const audio = new Audio("./assets/sounds/gameover.mp3");
       scoreEl.innerText = score;
       gameOverMenu.style.display = "flex";
       startGame = false;
@@ -183,8 +184,8 @@ myGame.addEventListener("mousedown", (e) => {
 });
 
 myGame.addEventListener("mouseup", (e) => {
-  shotX = 0;
-  shotY = 0;
+  shotX = null;
+  shotY = null;
 });
 
 function addBird() {
