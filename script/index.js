@@ -10,12 +10,28 @@ const slider = document.getElementById("myAudio");
 const creditsBtn = document.getElementById("credits");
 const gameCredits = document.getElementById("gameCredits");
 let addBirdInterval;
+let muted = true;
+const audioImg = document.getElementById("audioImg");
 
 let startGame = false;
 
 slider.oninput = function () {
   volume = this.value / 100;
 };
+
+audioImg.addEventListener("click", () => {
+  if (muted) {
+    volume = 0;
+    audioImg.src = "assets/images/mute.svg";
+    slider.value = 50/100;
+    muted = !muted
+  } else {
+    volume = 50/100;
+    audioImg.src = "assets/images/audio.svg";
+    slider.value = 50/100;
+    muted = !muted
+  }
+});
 
 startGameBtn.addEventListener("click", () => {
   mainMenu.style.display = "none";

@@ -83,3 +83,8 @@ button {
   background-color: #c7dca7;
   cursor: url("../assets/images/target.png"), auto;
 }
+
+.audio-img {
+  height: 1rem;
+  width: 1rem;
+}
