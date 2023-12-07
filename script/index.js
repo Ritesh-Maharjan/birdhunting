@@ -17,18 +17,19 @@ let startGame = false;
 
 slider.oninput = function () {
   volume = this.value / 100;
+  audioImg.src = "assets/images/audio.svg";
 };
 
 audioImg.addEventListener("click", () => {
   if (muted) {
     volume = 0;
     audioImg.src = "assets/images/mute.svg";
-    slider.value = 50/100;
+    slider.value = 0;
     muted = !muted
   } else {
-    volume = 50/100;
+    volume = 50;
     audioImg.src = "assets/images/audio.svg";
-    slider.value = 50/100;
+    slider.value = 50;
     muted = !muted
   }
 });
