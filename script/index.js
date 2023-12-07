@@ -5,17 +5,17 @@ const instructionDiv = document.getElementById("instructionDiv");
 const gameOverMenu = document.getElementById("gameOverMenu");
 const playAgain = document.getElementById("playAgain");
 const scoreEl = document.getElementById("score");
-const backToMenu = document.getElementById("backToMenu");
-const slider = document.getElementById("myAudio")
+const menuBtn = document.querySelectorAll("#menuBtn");
+const slider = document.getElementById("myAudio");
+const creditsBtn = document.getElementById("credits");
+const gameCredits = document.getElementById("gameCredits");
 let addBirdInterval;
 
 let startGame = false;
 
-
-slider.oninput = function() {
-  volume = this.value / 100
-}
-
+slider.oninput = function () {
+  volume = this.value / 100;
+};
 
 startGameBtn.addEventListener("click", () => {
   mainMenu.style.display = "none";
@@ -39,9 +39,15 @@ playAgain.addEventListener("click", () => {
   gameStart();
 });
 
-backToMenu.addEventListener("click", () => {
-  gameOverMenu.style.display = "none";
-  mainMenu.style.display = "flex";
+menuBtn.forEach((el) => {
+  el.addEventListener("click", (e) => {
+    backToMenu(e.target.getAttribute("data-name"));
+  });
+});
+
+creditsBtn.addEventListener("click", () => {
+  mainMenu.style.display = "none";
+  gameCredits.style.display = "flex";
 });
 
 function gameStart() {
@@ -55,4 +61,20 @@ function gameStart() {
   draw();
   clearInterval(addBirdInterval);
   addBirdInterval = setInterval(addBird, addBirdSpeed);
+}
+
+// function to go back to menu from all the pages
+function backToMenu(div) {
+  switch (div) {
+    case "credits":
+      gameCredits.style.display = "none";
+      break;
+    case "game":
+      gameOverMenu.style.display = "none";
+      break;
+    case "instruction":
+      instructionDiv.style.display = "none";
+      break;
+  }
+  mainMenu.style.display = "flex";
 }

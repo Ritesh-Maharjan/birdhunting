@@ -14,9 +14,10 @@ const spriteArr = [];
 
 for (let i = 1; i < 5; i++) {
   const img = new Image();
-  img.src = `../assets/sprite/bird-${i}.png`;
+  img.src = `assets/sprite/bird-${i}.png`;
   spriteArr.push(img);
 }
+
 class Bird {
   constructor() {
     this.height = 40;
